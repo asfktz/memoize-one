@@ -52,6 +52,6 @@
     "build:lib": "cross-env NODE_ENV=cjs babel src -d lib",
     "build:esm": "babel src --out-dir esm",
     "build:flow": "flow-copy-source --verbose src lib && flow-copy-source --verbose src esm",
-    "prepublish": "yarn run build"
+    "prepare": "yarn run build"
   }
 }
