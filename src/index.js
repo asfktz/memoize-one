@@ -15,7 +15,9 @@ export default function <ResultFn: (...Array<any>) => mixed>(resultFn: ResultFn,
   let lastResult: mixed;
   let calledOnce: boolean = false;
 
-  const isNewArgEqualToLast = (newArg: mixed, index: number): boolean => isEqual(newArg, lastArgs[index]);
+  const isNewArgEqualToLast = (newArg: mixed, index: number, newArgs: Array<mixed>): boolean => (
+    isEqual(newArg, lastArgs[index], newArgs, lastArgs)
+  );
 
   // breaking cache when context (this) or arguments change
   const result = function (...newArgs: Array<mixed>) {

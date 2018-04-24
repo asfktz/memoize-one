@@ -436,8 +436,12 @@ describe('memoizeOne', () => {
       // will trigger equality check
       memoizedAdd(1, 4);
 
-      expect(equalityStub).toHaveBeenCalledWith(1, 1);
-      expect(equalityStub).toHaveBeenCalledWith(4, 2);
+      expect(equalityStub.mock.calls).toEqual([
+        // newArg1, lastArg1, newArgs, lastArgs
+        [1, 1, [1, 4], [1, 2]],
+        // newArg2, lastArg2, newArgs, lastArgs
+        [4, 2, [1, 4], [1, 2]],
+      ]);
     });
 
     it('should return the previous value without executing the result fn if the equality fn returns true', () => {
@@ -500,4 +504,3 @@ describe('memoizeOne', () => {
     });
   });
 });
-
